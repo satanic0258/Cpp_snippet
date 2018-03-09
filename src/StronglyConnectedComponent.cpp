@@ -2,13 +2,14 @@
 
 // use 'getDAG' after 'addEdge'.
 // cmp : beforeV -> afterV ; v |-> cmp[v]
-//    ... this is topo-order (use when DP).
+// pre : afterV ->{beforeV}; v |-> pre[v] (vector)
 struct StronglyConnectedComponent {
 	int n;
 	std::vector<std::vector<int>> g, rg;
 	std::vector<bool> used;
 	std::vector<int> vs; // postorder
 	std::vector<int> cmp; // topo-order
+	std::vector<std::vector<int>> pre;
 
 	StronglyConnectedComponent(int n) :
 		n(n), g(n), rg(n), used(n), cmp(n) {}
@@ -62,18 +63,20 @@ struct StronglyConnectedComponent {
 		int N = scc();
 		std::vector<std::vector<int>> res(N);
 		std::vector<std::set<int>> set(N);
+		pre.resize(N);
 		REP(i, n) {
 			set[cmp[i]].insert(i);
 		}
 		REP(i, N) {
 			std::set<int> out;
 			for (const auto& v : set[i]) {
+				pre[i].emplace_back(v);
 				for (const auto& to : g[v]) {
 					out.insert(cmp[to]);
 				}
 			}
 			for (const auto& to : out) {
-				res[i].emplace_back(to);
+				if (i != to) res[i].emplace_back(to);
 			}
 		}
 		return res;
