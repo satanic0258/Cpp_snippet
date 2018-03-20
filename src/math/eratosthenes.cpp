@@ -1,6 +1,6 @@
 // Description: エラトステネスの篩を用いてN以下の素数を列挙する。O(logN)。
 
-std::vector<int> Eratosthenes(int n) {
+std::vector<int> eratosthenes(int n) {
 	std::vector<bool> num(n, true);
 	std::vector<int> prime;
 	num[0] = false;

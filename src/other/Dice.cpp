@@ -15,7 +15,7 @@ public:
 	std::array<int, 6> state;
 	Dice(std::array<int, 6> d, bool isRight = false) :state(d) { if (isRight) std::swap(state[2], state[3]); }
 	Dice(const Dice& d) :state(d.state) {}
-	void RollTo(signed d) {
+	void rollTo(signed d) {
 		/*
 			0
 			|
@@ -31,15 +31,15 @@ public:
 		case 3: state[0] = tmp[1]; state[1] = tmp[5]; state[4] = tmp[0]; state[5] = tmp[4]; break;
 		}
 	}
-	void RollTo(char c) {
+	void rollTo(char c) {
 		switch (c) {
-		case 'N': RollTo(0); break;
-		case 'E': RollTo(1); break;
-		case 'W': RollTo(2); break;
-		case 'S': RollTo(3); break;
+		case 'N': rollTo(0); break;
+		case 'E': rollTo(1); break;
+		case 'W': rollTo(2); break;
+		case 'S': rollTo(3); break;
 		}
 	}
-	void Rotate(int d) {
+	void rotate(int d) {
 		/* 90d degrees clockwise
 		 -> 0 ->
 		^   |   v
@@ -59,10 +59,10 @@ public:
 	bool operator==(const Dice& r)const {
 		Dice t(r);
 		for (int i = 0; i <= 6; ++i) {
-			if (i & 1) t.RollTo('E');
-			else    t.RollTo('N');
+			if (i & 1) t.rollTo('E');
+			else    t.rollTo('N');
 			for (int j = 0; j < 4; ++j) {
-				t.Rotate(1);
+				t.rotate(1);
 				if (state == t.state) {
 					return true;
 				}

@@ -10,7 +10,7 @@ double integ(double a, double b, std::function<double(double)> f) {
 		) / 90;
 }
 
-double integ_rep(double a, double b, int rep, std::function<double(double)> f) {
+double integRep(double a, double b, int rep, std::function<double(double)> f) {
 	double res = 0;
 	for (int i = 0; i < rep; ++i) {
 		res += integ(a + (b - a) / rep * i, a + (b - a) / rep * (i + 1), f);

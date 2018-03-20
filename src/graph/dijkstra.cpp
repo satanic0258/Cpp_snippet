@@ -13,7 +13,7 @@ std::vector<std::vector<Edge>> g($NODE_NUM$);
 
 //
 std::vector<int> dist($NODE_NUM$);
-std::function<void(int)> Dijkstra = [&](int s) {
+std::function<void(int)> dijkstra = [&](int s) {
 	using P = std::pair<int, int>;
 	std::priority_queue<P, std::vector<P>, std::greater<P>> pq;
 	std::fill(dist.begin(), dist.end(), INFLL);

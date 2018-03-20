@@ -9,28 +9,28 @@ public:
 	std::vector<int> rank, sa, lcp;
 	SuffixArray() {}
 	SuffixArray(const std::string& s) : n(s.size()), k(1), s(s), rank(s.size() + 1), sa(s.size() + 1), tmp(s.size() + 1), lcp(s.size() + 1) {
-		construct_sa();
-		construct_lcp();
+		constructSA();
+		constructLCP();
 	}
 
-	bool compare_sa(int i, int j) {
+	bool compareSA(int i, int j) {
 		if (rank[i] != rank[j]) return rank[i] < rank[j];
 		int ri = i + k <= n ? rank[i + k] : -1;
 		int rj = j + k <= n ? rank[j + k] : -1;
 		return ri < rj;
 	}
 
-	void construct_sa() {
+	void constructSA() {
 		for (int i = 0; i <= n; ++i) {
 			sa[i] = i;
 			rank[i] = i < n ? s[i] : -1;
 		}
 
 		for (k = 1; k <= n; k *= 2) {
-			std::sort(sa.begin(), sa.end(), [&](int i, int j) {return compare_sa(i, j); });
+			std::sort(sa.begin(), sa.end(), [&](int i, int j) {return compareSA(i, j); });
 			tmp[sa[0]] = 0;
 			for (int i = 1; i <= n; ++i) {
-				tmp[sa[i]] = tmp[sa[i - 1]] + compare_sa(sa[i - 1], sa[i]);
+				tmp[sa[i]] = tmp[sa[i - 1]] + compareSA(sa[i - 1], sa[i]);
 			}
 			for (int i = 0; i <= n; ++i) {
 				rank[i] = tmp[i];
@@ -38,7 +38,7 @@ public:
 		}
 	}
 
-	void construct_lcp() {
+	void constructLCP() {
 		for (int i = 0; i <= n; ++i) rank[sa[i]] = i;
 
 		int h = 0;
@@ -64,7 +64,7 @@ public:
 		}
 	}
 
-	void debug_show() {
+	void debugShow() {
 		std::cerr << "idx  " << " sa  " << "LCP  " << "suffix\n";
 		for (int i = 0; i < n + 1; ++i) {
 			std::cerr << std::setw(3) << std::setfill(' ') << i << "  ";

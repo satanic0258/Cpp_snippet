@@ -1,10 +1,9 @@
 // Description: きたまさ法を用いてK項間漸化式の第N項目を計算する。O(K^2 logN)。
 
-// きたまさ法を用いてK項間漸化式の第N項目を計算する。O(K^2 logN)。
 // 第1引数 : A[n] = a[0] * A[n-k] + a[1] * A[n-k+1] + ... + a[k-1] * A[n-1]
 // 第2引数 : A[0] = x[0], A[1] = x[1], ... , A[k-1] = x[k-1]
 // 第3引数 : n
-int Kitamasa(std::vector<int> a, std::vector<int> x, int n) {
+int kitamasa(std::vector<int> a, std::vector<int> x, int n) {
 	int k = a.size();
 	std::vector<int> t(2 * k + 1);
 

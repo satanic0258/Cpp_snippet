@@ -16,8 +16,8 @@ ll invMod(ll n, ll mod) {
 const signed FACT_MAX_N = 1000006;
 signed fact[FACT_MAX_N];
 signed factInv[FACT_MAX_N];
-struct INIT_FACT {
-	INIT_FACT() {
+struct InitFact {
+	InitFact() {
 		fact[0] = 1;
 		for (int i = 1; i < FACT_MAX_N; ++i) fact[i] = (long long)i * fact[i - 1] % MOD;
 		factInv[FACT_MAX_N - 1] = powMod(fact[FACT_MAX_N - 1], MOD - 2, MOD);
@@ -27,21 +27,21 @@ struct INIT_FACT {
 
 #if true // true if use MOD
 /* n,r<=10^6, query O(1)*/
-ll Permutation(int n, int r) {
+ll permutation(int n, int r) {
 	if (r == 0) return 1;
 	if (n < r) return 0;
 	return (long long)fact[n] * factInv[n - r] % MOD;
 }
-ll Combination(int n, int r) {
+ll combination(int n, int r) {
 	if (r == 0) return 1;
 	if (n < r) return 0;
 	return (long long)fact[n] * factInv[n - r] % MOD * factInv[r] % MOD;
 }
-ll CombinationWithRepetition(ll n, ll r) {
-	return Combination(n + r - 1, r);
+ll combinationWithRepetition(ll n, ll r) {
+	return combination(n + r - 1, r);
 }
 /*n<=10^9, r<=10^5, query O(r)*/
-/*ll Combination(ll n, ll r, ll mod) {
+/*ll combination(ll n, ll r, ll mod) {
 	if (n < r) return 0;
 	ll ans = 1;
 	if (n < 2 * r) r = n - r;
@@ -51,14 +51,14 @@ ll CombinationWithRepetition(ll n, ll r) {
 	}
 	return ans;
 }
-ll Permutation(int n, int r, int mod) {
-	return Combination(n, r, mod) * fact[r] % MOD;
+ll permutation(int n, int r, int mod) {
+	return combination(n, r, mod) * fact[r] % MOD;
 }*/
 #else // unuse MOD
 const signed COMB_MAX_N = 67; // <- max : 67
 long long comb[COMB_MAX_N][COMB_MAX_N];
-struct INIT_COMB {
-	INIT_COMB() {
+struct InitComb {
+	InitComb() {
 		for (int i = 0; i < COMB_MAX_N; ++i) {
 			for (int j = 0; j <= i; ++j) {
 				if (j == 0 || j == i) comb[i][j] = 1;

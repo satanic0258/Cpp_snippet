@@ -1,7 +1,7 @@
 // Description: レーベンシュタイン距離を用いて、1文字の挿入・削除・置換によって一方の文字列をもう一方の文字列に変形するのに必要な手順の最小回数を計算する。O(|S||T|) (それぞれ文字列長)。
 
 // 一文字の挿入・削除・置換によって文字列sを文字列tに変えるコスト(編集距離)を求める
-int LevenshteinDistance(const std::string& s, const std::string& t) {
+int levenshteinDistance(const std::string& s, const std::string& t) {
 	std::vector<std::vector<int>> d(s.size() + 1, std::vector<int>(t.size() + 1, 0));
 	for (int i = 0; i <= s.size(); ++i) d[i][0] = i;
 	for (int j = 0; j <= t.size(); ++j) d[0][j] = j;

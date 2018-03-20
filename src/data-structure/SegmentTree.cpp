@@ -73,7 +73,7 @@ public:
 	T query(int a, int b) { return query_(a, b, 0, 0, ARY_SIZE / 2 + 1); }
 	T operator[](int i) { return ary[i + ARY_SIZE / 2]; }
 
-	void debug_show() {
+	void debugShow() {
 		for (int i = ARY_SIZE / 2; i < ARY_SIZE; ++i) std::cerr << ary[i] << " ";
 		std::cerr << "\n";
 	}

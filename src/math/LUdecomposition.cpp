@@ -5,7 +5,7 @@ struct LUinfo {
 	std::vector<int> index;
 };
 // O( n^3 ), Gaussian forward elimination
-LUinfo LU_decomposition(std::vector<std::vector<double>> A) {
+LUinfo LUdecomposition(std::vector<std::vector<double>> A) {
 	const int n = A.size();
 	LUinfo data;
 	for (int i = 0; i < n; ++i) {
@@ -30,7 +30,7 @@ LUinfo LU_decomposition(std::vector<std::vector<double>> A) {
 	return data;
 }
 // O( n^2 ) Gaussian backward substitution
-std::vector<double> LU_backsubstitution(const LUinfo &data, std::vector<double> b) {
+std::vector<double> LUbacksubstitution(const LUinfo &data, std::vector<double> b) {
 	const int n = b.size();
 	int k = 0;
 	for (int i = 0; i < n; ++i) {

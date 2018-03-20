@@ -1,6 +1,6 @@
 // Description: 二部マッチングを求める．O(|V||E|)．
 
-// ## add_edge -> solve
+// ## addEdge -> solve
 struct BipartiteMatching {
 	int V;
 	std::vector<std::vector<int>> g;
@@ -13,7 +13,7 @@ struct BipartiteMatching {
 		used.resize(V, false);
 	}
 
-	void add_edge(int u, int v) {
+	void addEdge(int u, int v) {
 		g[u].emplace_back(v);
 		g[v].emplace_back(u);
 	}

@@ -3,7 +3,7 @@
 // use 'getDAG' after 'addEdge'.
 // cmp : beforeV -> afterV ; v |-> cmp[v]
 // pre : afterV ->{beforeV}; v |-> pre[v] (vector)
-struct StronglyConnectedComponent {
+struct SCC {
 	int n;
 	std::vector<std::vector<int>> g, rg;
 	std::vector<bool> used;
@@ -11,7 +11,7 @@ struct StronglyConnectedComponent {
 	std::vector<int> cmp; // topo-order
 	std::vector<std::vector<int>> pre;
 
-	StronglyConnectedComponent(int n) :
+	SCC(int n) :
 		n(n), g(n), rg(n), used(n), cmp(n) {}
 
 	int operator[](int id) {
