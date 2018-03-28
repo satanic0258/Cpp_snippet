@@ -1,7 +1,8 @@
 // Description: 木のオイラーツアーを構成する。O(N)。
 
 struct EulerTour {
-	std::vector<int> eulerTour, begin, end;
+	std::vector<int> eulerTour;
+	std::vector<int> begin, end; // [begin, end)
 	int n, k;
 
 	// 頂点vを根とする木gのオイラーツアー
